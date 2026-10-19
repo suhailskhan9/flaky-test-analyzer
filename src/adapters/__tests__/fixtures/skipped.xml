@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="vitest tests" time="0.5">
+    <testsuite name="src/skip.test.ts" time="0.5" timestamp="2024-01-01T00:00:00">
+        <testcase name="runs normally" classname="src/skip.test.ts" time="0.010"/>
+        <testcase name="skipped for now" classname="src/skip.test.ts" time="0">
+            <skipped/>
+        </testcase>
+    </testsuite>
+</testsuites>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="vitest tests" time="1.234">
+    <testsuite name="src/math.test.ts" time="1.234" timestamp="2024-01-01T00:00:00">
+        <testcase name="adds two numbers" classname="src/math.test.ts" time="0.012"/>
+        <testcase name="subtracts numbers" classname="src/math.test.ts" time="0.010">
+            <failure message="Expected 3 but got 2" type="AssertionError">AssertionError: Expected 3 but got 2 at src/math.test.ts:10:5</failure>
+        </testcase>
+    </testsuite>
+</testsuites>

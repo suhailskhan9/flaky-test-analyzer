@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="vitest tests" time="1.0">
+    <testsuite name="src/param.test.ts" time="1.0" timestamp="2024-01-01T00:00:00">
+        <testcase name="validates input (1)" classname="src/param.test.ts" time="0.010"/>
+        <testcase name="validates input (2)" classname="src/param.test.ts" time="0.010"/>
+        <testcase name="validates input (3)" classname="src/param.test.ts" time="0.010">
+            <failure message="Expected true but got false" type="AssertionError">AssertionError: Expected true but got false</failure>
+        </testcase>
+    </testsuite>
+</testsuites>

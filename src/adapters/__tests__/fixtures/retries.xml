@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="vitest tests" time="2.0">
+    <testsuite name="src/flaky.test.ts" time="2.0" timestamp="2024-01-01T00:00:00">
+        <testcase name="flaky network call" classname="src/flaky.test.ts" time="0.5">
+            <failure message="Network timeout" type="Error">Error: Network timeout at src/flaky.test.ts:8:5</failure>
+        </testcase>
+        <testcase name="flaky network call" classname="src/flaky.test.ts" time="0.3">
+    </testsuite>
+</testsuites>
