@@ -6,11 +6,23 @@ export const ConfigSchema = z.object({
         path: z.string().default('flaky-test-analyzer.db'),
     }).default({ path: 'flaky-test-analyzer.db' }),
 
-    rerun: z.object({
-        maxRerunsPerTest: z.number().int().min(1).max(20).default(5),
-        maxRerunsPerRun: z.number().int().min(1).max(100).default(30),
-        dryRun: z.boolean().default(false),
-    }).default({maxRerunsPerTest: 5, maxRerunsPerRun: 30, dryRun: false }),
+    storage: z.object({
+        mode: z.enum(['local', 'ci']).default('local')
+    }).default({ mode: 'local' }),
+
+    github: z.object({
+        token: z.string().default(''),
+        owner: z.string().default(''),
+        repo: z.string().default(''),
+        artifactName: z.string().default('test-results'),
+        retentionDays: z.number().int().default(30)
+    }).default({
+        token: '',
+        owner: '',
+        repo: '',
+        artifactName: 'test-results',
+        retentionDays: 30
+    }),
 
     llm: z.object({
         provider: z.enum(['openai-compatible', 'mock']).default('mock'),

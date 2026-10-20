@@ -169,10 +169,12 @@ export class Store {
             `
                 SELECT COUNT(DISTINCT t.id) as count
                 FROM tests t
-                JOIN runs r ON r.runId = t.runId
-                WHERE r.branch = ?
-                ORDER BY r.createdAt DESC
-                LIMIT 1
+                WHERE t.runId = (
+                    SELECT runId FROM runs
+                    WHERE branch = ?
+                    ORDER BY createdAt DESC
+                    LIMIT 1
+                )
             `)
             .get(branch) as { count: number } | undefined;
         
