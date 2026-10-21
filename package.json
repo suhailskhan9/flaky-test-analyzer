@@ -24,11 +24,13 @@
   },
   "homepage": "https://github.com/suhailskhan9/flaky-test-analyzer#readme",
   "dependencies": {
+    "adm-zip": "^0.6.1",
     "better-sqlite3": "^13.0.3",
     "fast-xml-parser": "^5.11.2",
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@types/adm-zip": "^0.5.8",
     "@types/better-sqlite3": "^9.6.0",
     "@types/node": "^26.6.5",
     "eslint": "^10.13.0",
