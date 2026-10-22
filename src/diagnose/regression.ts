@@ -1,15 +1,7 @@
+import { Octokit } from '@octokit/rest';
 import type { Store } from '../store/store.js';
 import type { Config } from '../core/config.js';
 
-const GITHUB_API = 'https://api.github.com';
-
-function githubHeaders(token: string): Record<string, string> {
-  return {
-    Authorization: `Bearer ${token}`,
-    Accept: 'application/vnd.github+json',
-    'X-GitHub-Api-Version': '2022-11-28',
-  };
-}
 
 export interface RegressionCorrelation {
   lastPassingCommit: { sha: string; date: string };
@@ -68,27 +60,23 @@ async function fetchChangedFiles(
   baseSha: string,
   headSha: string
 ): Promise<string[] | null> {
-  const url =
-    `${GITHUB_API}/repos/${owner}/${repo}/compare/${baseSha}...${headSha}`;
 
-  let res: Response;
-  try {
-    res = await fetch(url, { headers: githubHeaders(token) });
-  } catch {
+  const octokit = new Octokit({ auth: token });
+
+  try{
+    const res = await octokit.rest.repos.compareCommits({
+      owner,
+      repo,
+      base: baseSha,
+      head: headSha
+    });
+    return (res.data.files ?? []).map(f => f.filename);
+  } catch (err) {
+    console.log(`[regression] GitHub compare API error - skipping ${err}`);
     return null;
   }
-
-  if (!res.ok) {
-    console.log(
-      `[regression] GitHub compare API responded ${res.status} — skipping`
-    );
-    return null;
-  }
-
-  const data = await res.json() as { files?: Array<{ filename: string }> };
-
-  return (data.files ?? []).map((f) => f.filename);
 }
+
 
 function findSuspectFiles( changedFiles: string[], testFilePath: string): string[] {
   const testBasename = testFilePath.split('/').at(-1) ?? testFilePath;

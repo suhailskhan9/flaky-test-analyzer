@@ -25,7 +25,7 @@ export const ConfigSchema = z.object({
     }),
 
     llm: z.object({
-        provider: z.enum(['openai-compatible', 'mock']).default('mock'),
+        provider: z.enum(['openai', 'gemini', 'groq', 'ollama', 'mock']).default('mock'),
         model: z.string().default(''),
         apiKeyEnv: z.string().default('LLM_API_KEY'),
         baseUrl: z.string().optional(),
